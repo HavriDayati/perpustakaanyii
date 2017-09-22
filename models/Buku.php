@@ -5,6 +5,8 @@ namespace app\models;
 use Yii;
 use yii\web\UploadedFile;
 use yii\Helpers\ArrayHelper;
+use app\models\Penulis;
+use app\models\Peminjaman;
 
 /**
  * This is the model class for table "buku".
@@ -57,9 +59,25 @@ class Buku extends \yii\db\ActiveRecord
             'id_penulis' => 'Penulis',
         ];
     }
+     public static function getGrafikPerPenulis()
+    {
+        $chart = null;
 
+        foreach(Penulis::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafik().'"},';
+        }
+        return $chart;
+    }    
+        public function getCountGrafikBuku()
 
-public function getIdJenis()
+        {
+            return Peminjaman::find()
+            ->andWhere(['id_buku' => $this->id])
+            ->count();
+        }
+
+    public function getIdJenis()
     {
         return $this->hasOne(Jenis::className(), ['id' => 'id_jenis']);
     }

@@ -3,7 +3,8 @@
 namespace app\models;
 
 use Yii;
-use app\models\Pengguna;
+use app\models\User;
+use app\models\Buku;
 
 /**
  * This is the model class for table "peminjaman".
@@ -25,6 +26,10 @@ class Peminjaman extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'peminjaman';
+    }
+    public static function getCount()
+    {
+        return self::find()->count();
     }
 
     /**
@@ -70,4 +75,13 @@ class Peminjaman extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Pengguna::className(), ['id' => 'id_user']);
     }
-}
+    public static function getGrafikPerBuku()
+    {
+        $chart = null;
+        foreach(Buku::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafikBuku().'"},';
+        }
+        return $chart;
+        }
+    }

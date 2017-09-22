@@ -57,6 +57,11 @@ class BukuController extends Controller
         ]);
     }
 
+    public function actionCari()
+    {
+        return $this->render('cari');
+    }
+
     /**
      * Creates a new Buku model.
      * If creation is successful, the browser will be redirected to the 'view' page.

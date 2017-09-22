@@ -60,3 +60,25 @@ $this->title = "Halaman Dashboard";
         </div>
         
 </div>
+
+    <div class="row">
+    <div class="col-sm-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Grafik Penulis</h3>
+            </div>
+            <div class="box-body">
+                <?= $this->render('grafikpenulis'); ?>
+            </div>
+        </div>
+    </div>
+<div class="col-sm-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Grafik Peminjaman</h3>
+            </div>
+            <div class="box-body">
+                <?= $this->render('grafikpeminjaman'); ?>
+            </div>
+        </div>
+    </div>

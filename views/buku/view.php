@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'cover',
+            'Buku',
         ],
     ]) ?>
 
