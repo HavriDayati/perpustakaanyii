@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use app\models\User;
+use app\model\Peminjaman;
 use Yii;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
@@ -20,6 +22,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['nama','username','password','role'],'required'],
             [['role'],'integer'],
             [['nama','username','password'],'string','max'=> 255],
+            [['nama', 'username', 'password', 'authKey', 'accessToken', 'role'], 'required'],
+            [['role'],'integer'],
+            [['nama', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max'=>255],
 
    ];
 }
@@ -32,8 +37,9 @@ public function attributeLabels()
 'nama' => 'Nama',
 'username' => 'Username',
 'password' => 'Password',
-'role' => 'Role',
 'authkey' => 'Authkey',
+'accessToken' => 'Acces Token',
+'role' => 'Role',
     ];
 }
 
@@ -123,5 +129,13 @@ public function attributeLabels()
     public function validatePassword($password)
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
+    }
+    public static function getCount()
+    {
+        return self::find()->count();
+    }
+    public function getPeminjamen()
+    {
+        return $this->hasMany(Peminjaman::className(), ['id_user' => 'id']);
     }
 }

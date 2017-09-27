@@ -12,7 +12,6 @@ use app\models\Penerbit;
 <div class="container">
     <section class="col-lg-8">
         <div class="table-responsive">
-            <div class="page-header">
             
 </div>
     

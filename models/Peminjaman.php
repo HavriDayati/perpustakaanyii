@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use app\models\User;
-use app\models\Buku;
 
 /**
  * This is the model class for table "peminjaman".
@@ -38,11 +37,11 @@ class Peminjaman extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_buku', 'id_user', 'waktu_dipinjam', 'waktu_pengembalian'], 'required'],
+            [['waktu_dipinjam', 'waktu_pengembalian'], 'required'],
             [['id_buku', 'id_user'], 'integer'],
-            [['waktu_dipinjam', 'waktu_pengembalian'], 'safe'],
+            [['waktu_dipinjam', 'waktu_pengembalian', 'id_buku', 'id_user'], 'safe'],
             [['id_buku'], 'exist', 'skipOnError' => true, 'targetClass' => Buku::className(), 'targetAttribute' => ['id_buku' => 'id']],
-            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => Pengguna::className(), 'targetAttribute' => ['id_user' => 'id']],
+            [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
 
@@ -73,7 +72,7 @@ class Peminjaman extends \yii\db\ActiveRecord
      */
     public function getIdUser()
     {
-        return $this->hasOne(Pengguna::className(), ['id' => 'id_user']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
     public static function getGrafikPerBuku()
     {
@@ -83,5 +82,13 @@ class Peminjaman extends \yii\db\ActiveRecord
             $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafikBuku().'"},';
         }
         return $chart;
-        }
     }
+
+    public function beforeSave($insert)
+    {
+        if($insert) {
+            $this->id_user = Yii::$app->user->identity->id;
+        }
+        return true;
+    }
+ }

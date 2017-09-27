@@ -7,7 +7,7 @@ use yii\web\UploadedFile;
 use yii\Helpers\ArrayHelper;
 use app\models\Penulis;
 use app\models\Peminjaman;
-
+use yii\helpers\Html;
 /**
  * This is the model class for table "buku".
  *
@@ -35,9 +35,8 @@ class Buku extends \yii\db\ActiveRecord
     {
         return [
             [['id_jenis', 'id_penulis'], 'integer'],
-            [['file'], 'file'],
             [['id_jenis'], 'string', 'max' => 33],
-            [['cover', 'id_penulis'], 'required'],
+            [['id_penulis'], 'required'],
             [['nama', 'cover'], 'string', 'max' => 255],
             [['id_penulis'], 'string', 'max' =>40],
             [['id_jenis'], 'exist', 'skipOnError' => true, 'targetClass' => Jenis::className(), 'targetAttribute' => ['id_jenis' => 'id']],
@@ -116,14 +115,13 @@ class Buku extends \yii\db\ActiveRecord
     {
         return self::find()->count();
     }
-
-    public  function upload()
+    public function getGambar($htmlOptions=[])
     {
-        if ($this->validate()) {
-            $this->cover->saveAs('uploads/' .$this->cover->baseName. '.' .$this->cover->extension);
-            return true;
+        //jika file ada dalam direktori
+        if($this->cover == null && ! file_exists('@web/uploads/'.$this->cover)){
+            return Html::img('@web/images/Basis Data.jpg',$htmlOptions);
         } else {
-            return false;
+            return Html::img('@web/uploads/'. $this->cover,$htmlOptions);
+        }
     }
-}
 }

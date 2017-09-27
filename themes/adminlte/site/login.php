@@ -11,6 +11,13 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<div  class="login-pages">
+            <div class="login-logo">
+              <p style="font-weight: bold; color: #F5C316">Aplikasi Perpustakaan Berbasis Web </p>
+              <p class="txt-l" style="font-weight: bold">Politeknik Negeri Indramayu</p>
+
+            </div>
+
 <div class="login-box">
     <div class="login-box-body">
     <p class="login-box-msg">Silahkan login terlebih dahulu</p>

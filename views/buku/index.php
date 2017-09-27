@@ -48,7 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             
-            'cover',
+            [
+                'attribute'=>'cover',
+                'format'=>'raw',
+                'value'=> function($data){
+                    return $data->getGambar(['style'=>'width:75px']);
+                },
+                'headerOptions'=> ['style' => 'text-align:center'],
+            ],
             
 
             ['class' => 'yii\grid\ActionColumn'],

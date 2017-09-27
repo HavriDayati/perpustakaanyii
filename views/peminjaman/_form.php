@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 use app\models\Buku;
-use app\models\Pengguna;
-use dosamigos\datepicker\DatePicker;
+use app\models\User;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Peminjaman */
@@ -41,20 +41,12 @@ use dosamigos\datepicker\DatePicker;
     ]
 ]); ?>
 
-    <?= $form->field($model, 'id_user')->widget(Select2::classname(), [ 
-    'data' => Pengguna::getList(),
-    'options' => ['placeholder' => 'Pilih Nama Peminjam',
-    ]
-]); ?>
-
     <?= $form->field($model, 'waktu_dipinjam')->widget(
     DatePicker::className(), [
         // inline too, not bad
-         'inline' => false, 
-         // modify template for custom rendering
-        /*'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',*/
-        'clientOptions' => [
-            'autoclose' => true,
+         'removeButton' => false, 
+        'options' => ['placeholder' =>'Tanggal'],
+            'pluginOptions' => [
             'format' => 'yyyy-mm-dd'
         ]
 ]);?>
@@ -62,11 +54,9 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'waktu_pengembalian')->widget(
     DatePicker::className(), [
         // inline too, not bad
-         'inline' => false, 
-         // modify template for custom rendering
-        /*'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',*/
-        'clientOptions' => [
-            'autoclose' => true,
+         'removeButton' => false, 
+        'options' => ['placeholder' =>'Tanggal'],
+            'pluginOptions' => [
             'format' => 'yyyy-mm-dd'
         ]
 ]);?>

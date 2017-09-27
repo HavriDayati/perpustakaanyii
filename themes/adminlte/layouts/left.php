@@ -44,7 +44,7 @@
 
                     ['label' => 'MENU LAINNYA', 'options' => ['class' => 'header']],
                     ['label' => 'Peminjaman', 'icon' => 'tasks', 'url' => ['peminjaman/index']],
-                    ['label' => 'Admin', 'icon' => 'user', 'url' => ['pengguna/index']],
+                    ['label' => 'Admin', 'icon' => 'user', 'url' => ['user/index']],
                     ['label' => 'Logout', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post">{icon} {label}</a>' , 'visible' => !Yii::$app->user->isGuest],
                 ],
             ]

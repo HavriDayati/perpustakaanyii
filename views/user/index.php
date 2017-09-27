@@ -7,30 +7,32 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="user-index box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box-header">
+        <?= Html::a('<i class ="glyphicon glyphicon-plus"></i> Tambah User', ['create'], ['class' => 'btn btn-primary']) ?>
+    </div>
+
+
+    <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn',
+                'header' => 'No',
+            ],
 
-            'id',
             'nama',
             'username',
             'password',
             'role',
-            // 'authKey',
-            // 'accessToken',
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

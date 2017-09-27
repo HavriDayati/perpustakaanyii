@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="buku-view box box-primary">
     <div class="box-header">
         <h3 class="box-title">Detail Buku</h3>
-    </div>
+    </div> 
 
     <div class="box-body">
 
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'cover',
-            'Buku',
+
         ],
     ]) ?>
 
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-footer">
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-list"></i> Daftar Buku', ['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
-        
+        <?= Html::a('<i class="fa fa-file"></i> Export PDF', ['view-export-pdf', 'id' => $model->id], ['target' => '_blank', 'class' => 'btn btn-success ']) ?>
     </div>
 
 </div>
